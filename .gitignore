@@ -1,0 +1,12 @@
+# Ignore virtual environments
+marketplace_env/
+
+# Ignore sensitive files
+.env
+
+# Ignore temporary or system files
+*.log
+__pycache__/
+*.pyc
+*.xlsm
+.DS_Store
