@@ -1,8 +1,11 @@
 from flask import Flask, request, jsonify, render_template
 from flask_sqlalchemy import SQLAlchemy
 from datetime import datetime
+from flask_cors import CORS
 
 app = Flask(__name__)
+CORS(app)
+
 FILE_PATH = "C:/Users/amzef/OneDrive/Documents/Inventory.xlsm"
 
 # Database configuration
@@ -36,10 +39,14 @@ def log_unanswered_query():
 # Route to retrieve unanswered queries
 @app.route('/api/get_unanswered', methods=['GET'])
 def get_unanswered_queries():
-    queries = UnansweredQuery.query.all()
-    result = [{"id": q.id, "message": q.message, "timestamp": q.timestamp} for q in queries]
-    return jsonify(result), 200
-
+    # queries = UnansweredQuery.query.all()
+    # result = [{"id": q.id, "message": q.message, "timestamp": q.timestamp} for q in queries]
+    # return jsonify(result), 200
+    data = [
+        {"id": 1, "message": "Is this product available?", "timestamp": "2024-12-15 12:00:00"},
+        {"id": 2, "message": "Can you tell me more about the features?", "timestamp": "2024-12-15 12:05:00"}
+    ]
+    return jsonify(data)
 # Route to render the dashboard UI
 @app.route('/')
 def dashboard():
