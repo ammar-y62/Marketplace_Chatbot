@@ -1,84 +1,205 @@
 # Marketplace Chatbot and Dashboard
 
-This project implements an integrated **Marketplace Chatbot** using **Rasa** and a **React-based Dashboard** to manage unanswered queries and inventory data.
-
-## 📋 Project Overview
-
-The project is divided into three main components:
-
-1. **Rasa Chatbot**: A chatbot for answering questions about product availability, pickup location, and timing.
-2. **Backend**: A **Flask API** for managing inventory, logging unanswered queries, and serving data to the dashboard.
-3. **React Dashboard**: A user-friendly interface to view unanswered queries and manage scripts.
+This project integrates a chatbot powered by Rasa for handling marketplace inquiries and a React-based dashboard for managing unanswered queries.
 
 ---
 
-## 🛠️ Technologies Used
+## 📜 Table of Contents
 
-### Backend
-- **Flask**: Python web framework for API development.
-- **Flask-SQLAlchemy**: Database ORM for managing unanswered queries.
-- **SQLite**: Lightweight database for storing queries.
-- **Pandas**: For reading and managing Excel-based inventory data.
-- **CORS**: For enabling frontend-backend communication.
-
-### Chatbot
-- **Rasa**: Conversational AI framework to create the chatbot.
-- **Rasa SDK**: For building custom actions and integrating APIs.
-
-### Frontend
-- **React**: JavaScript library for building the dashboard UI.
-- **Bootstrap**: CSS framework for responsive and modern UI components.
+- [Introduction](#-introduction)
+- [Features](#-features)
+- [Technologies Used](#-technologies-used)
+- [Installation and Setup](#-installation-and-setup)
+- [Project Structure](#-project-structure)
+- [API Endpoints](#-api-endpoints)
+- [Contributions](#-contributions)
+- [License](#-license)
+- [Contact](#-contact)
 
 ---
 
-## 🚀 Features
+## 📖 Introduction
 
-### Chatbot
-- Answer questions about:
-  - Product availability.
-  - Pickup address.
-  - Pickup timing.
-- Logs unanswered queries to the backend for manual responses.
-
-### Backend API
-- Stores unanswered queries into the database.
-- Serves inventory data to the chatbot.
-- Provides data endpoints for the frontend dashboard.
-
-### React Dashboard
-- Displays unanswered queries dynamically.
-- Toggle between **Dark Mode** and **Light Mode**.
-- Allows saving manual scripts for unresolved queries.
+The Marketplace Chatbot and Dashboard project provides an automated solution for handling client inquiries about marketplace listings. It includes:
+- A chatbot for answering common questions about availability, pickup addresses, and timings.
+- A dashboard for reviewing and responding to unanswered queries manually.
 
 ---
 
-## 📁 Project Structure
+## ✨ Features
+
+- **Chatbot**: Handles inquiries about product availability, pickup locations, and timings.
+- **Dashboard**: Displays unanswered queries for manual review and response.
+- **Database Integration**: Uses SQLite for storing unanswered queries.
+- **Responsive Design**: Built using React and Bootstrap.
+
+---
+
+## 🔧 Technologies Used
+
+- **Backend**: Flask, Flask-SQLAlchemy
+- **Chatbot**: Rasa
+- **Frontend**: React, Bootstrap
+- **Database**: SQLite
+- **Deployment**: Local or cloud-based setup
+
+---
+
+## 🔧 Installation and Setup
+
+### 1. Clone the Repository
+```bash
+git clone https://github.com/username/marketplace-chatbot.git
+cd marketplace-chatbot
+```
+
+### 2. Set Up the Backend
+- Navigate to the root directory and set up a virtual environment:
+  ```bash
+  python -m venv marketplace_env
+  source marketplace_env/bin/activate  # Linux/Mac
+  marketplace_env\Scripts\activate  # Windows
+  ```
+- Install the required Python packages:
+  ```bash
+  pip install -r requirements.txt
+  ```
+- Run the Flask app:
+  ```bash
+  python app.py
+  ```
+
+### 3. Set Up the Chatbot
+- Navigate to the Rasa directory:
+  ```bash
+  cd rasa
+  ```
+- Train the chatbot:
+  ```bash
+  rasa train
+  ```
+- Run the Rasa action server:
+  ```bash
+  rasa run actions
+  ```
+- Start the chatbot:
+  ```bash
+  rasa shell
+  ```
+
+### 4. Set Up the Frontend
+- Navigate to the `dashboard` directory:
+  ```bash
+  cd dashboard
+  ```
+- Install dependencies:
+  ```bash
+  npm install
+  ```
+- Start the React app:
+  ```bash
+  npm start
+  ```
+
+---
+
+## 🗂 Project Structure
 
 ```plaintext
-Marketplace_Chatbot/
-│
-├── dashboard/            # React frontend code
-│   ├── public/           # Static files
-│   ├── src/              # React components
-│   │   ├── api.js        # API calls to the backend
-│   │   ├── components/   # React UI components
-│   │   ├── App.js        # Main App file
-│   │   └── index.js      # Entry point for React
-│   └── package.json      # React project dependencies
-│
-├── rasa/                 # Rasa chatbot configuration
-│   ├── actions.py        # Custom Rasa actions
-│   ├── data/             # NLU, stories, and rules files
-│   ├── domain.yml        # Rasa domain configuration
-│   └── endpoints.yml     # Custom action server configuration
-│
-├── static/               # Old static files (no longer used)
+marketplace-chatbot/
+├── app.py                   # Flask backend for API and database
+├── dashboard/               # React-based frontend
+│   ├── public/              # Static assets
+│   ├── src/                 # React components and pages
+│   ├── package.json         # Frontend dependencies
 │   └── ...
-│
-├── templates/            # Old HTML templates (deprecated)
-│
-├── app.py                # Flask backend server
-├── instance/             # SQLite database for unanswered queries
-│   └── unanswered_queries.db
-├── requirements.txt      # Python dependencies
-└── README.md             # Project documentation
+├── rasa/                    # Chatbot configuration and files
+│   ├── domain.yml           # Rasa domain file
+│   ├── actions.py           # Custom actions for the chatbot
+│   ├── config.yml           # Chatbot pipeline configuration
+│   └── ...
+├── requirements.txt         # Backend dependencies
+└── README.md                # Project documentation
+```
+
+---
+
+## 🌐 API Endpoints
+
+### 1. **Log Unanswered Queries**
+**Endpoint**:
+`POST /api/log_unanswered`
+
+**Payload**:
+```json
+{
+  "message": "Unanswered query text"
+}
+```
+
+**Response**:
+```json
+{
+  "status": "success",
+  "message": "Logged successfully"
+}
+```
+
+---
+
+### 2. **Get Unanswered Queries**
+**Endpoint**:
+`GET /api/get_unanswered`
+
+**Response**:
+```json
+[
+  {
+    "id": 1,
+    "message": "Unanswered query text",
+    "timestamp": "2024-06-16T12:00:00"
+  }
+]
+```
+
+---
+
+### 3. **Respond to Query**
+**Endpoint**:
+`POST /api/respond`
+
+**Payload**:
+```json
+{
+  "query_id": 1,
+  "response": "Here is the response text."
+}
+```
+
+**Response**:
+```json
+{
+  "status": "success",
+  "message": "Response sent successfully"
+}
+```
+
+---
+
+## 🔄 Contributions
+
+Contributions are welcome! Please fork the repository and submit a pull request.
+
+---
+
+## © License
+
+This project is licensed under the MIT License. See `LICENSE` for more details.
+
+---
+
+## 📞 Contact
+
+For questions or feedback, contact:
+- **Email**: amzeftawy@gmail.com
+- **GitHub**: [ammar-y62](https://github.com/ammar-y62)
