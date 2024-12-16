@@ -10,3 +10,8 @@ __pycache__/
 *.pyc
 *.xlsm
 .DS_Store
+rasa/.rasa/cache/
+*.db
+instance/
+# Ignore Rasa models
+rasa/models/

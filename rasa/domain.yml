@@ -1,0 +1,48 @@
+version: "3.1"
+
+intents:
+  - greet
+  - goodbye
+  - affirm
+  - deny
+  - inquire_stock
+  - inquire_pickup_address
+  - inquire_pickup_timing
+
+entities:
+  - listing_id
+
+slots:
+  listing_id:
+    type: text
+    mappings:
+      - type: from_entity
+        entity: listing_id
+
+actions:
+  - action_check_inventory
+  - action_provide_pickup_address
+  - action_provide_pickup_timing
+  - action_default_fallback
+
+
+responses:
+  utter_greet:
+    - text: "Hello! How can I help you today?"
+
+  utter_goodbye:
+    - text: "Goodbye! Let me know if you need anything else."
+
+  utter_ask_listing_id:
+    - text: "Please provide the listing ID so I can check its availability."
+
+  utter_provide_pickup_address:
+    - text: "The pickup address is: 123 Marketplace Street, City Center."
+
+  utter_provide_pickup_timing:
+    - text: "Pickup is available from 9 AM to 6 PM, Monday to Saturday."
+  utter_ask_clarification:
+    - text: "Could you clarify your query? I'm here to help!"
+session_config:
+  session_expiration_time: 60
+  carry_over_slots_to_new_session: true

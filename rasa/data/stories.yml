@@ -1,0 +1,25 @@
+version: "3.1"
+
+stories:
+
+- story: check listing availability
+  steps:
+    - intent: inquire_stock
+    - action: action_check_inventory
+
+- story: provide pickup address
+  steps:
+    - intent: inquire_pickup_address
+    - action: action_provide_pickup_address
+
+- story: provide pickup timing
+  steps:
+    - intent: inquire_pickup_timing
+    - action: action_provide_pickup_timing
+
+- story: greet and check listing
+  steps:
+    - intent: greet
+    - action: utter_greet
+    - intent: inquire_stock
+    - action: action_check_inventory

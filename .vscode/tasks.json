@@ -1,0 +1,72 @@
+{
+  "version": "2.0.0",
+  "tasks": [
+    {
+      "label": "Start Flask API",
+      "type": "shell",
+      "command": "python",
+      "args": ["app.py"],
+      "presentation": {
+        "reveal": "always"
+      },
+      "options": {
+        "cwd": "C:/Users/amzef/Documents/Marketplace_Chatbot"
+      },
+      "problemMatcher": []
+    },
+    {
+      "label": "Start Rasa Actions",
+      "type": "shell",
+      "command": "rasa",
+      "args": ["run", "actions"],
+      "presentation": {
+        "reveal": "always"
+      },
+      "options": {
+        "cwd": "C:/Users/amzef/Documents/Marketplace_Chatbot/rasa"
+      },
+      "problemMatcher": []
+    },
+    {
+      "label": "Start Rasa Bot",
+      "type": "shell",
+      "command": "rasa",
+      "args": ["run"],
+      "presentation": {
+        "reveal": "always"
+      },
+      "options": {
+        "cwd": "C:/Users/amzef/Documents/Marketplace_Chatbot/rasa"
+      },
+      "problemMatcher": []
+    },
+    {
+      "label": "Start All Services",
+      "type": "shell",
+      "command": "cmd",
+      "args": [
+        "/c",
+        "start cmd /k \"cd C:/Users/amzef/Documents/Marketplace_Chatbot && python app.py\" && start cmd /k \"cd C:/Users/amzef/Documents/Marketplace_Chatbot/rasa && rasa run actions\" && start cmd /k \"cd C:/Users/amzef/Documents/Marketplace_Chatbot/rasa && rasa run\""
+      ],
+      "presentation": {
+        "reveal": "always",
+        "panel": "shared"
+      },
+      "problemMatcher": []
+    },
+    {
+      "label": "Start Actions and Flask",
+      "type": "shell",
+      "command": "cmd",
+      "args": [
+        "/c",
+        "start cmd /k \"cd C:/Users/amzef/Documents/Marketplace_Chatbot && python app.py\" && rasa run actions\" && start cmd /k \"cd C:/Users/amzef/Documents/Marketplace_Chatbot/rasa && rasa run\""
+      ],
+      "presentation": {
+        "reveal": "always",
+        "panel": "shared"
+      },
+      "problemMatcher": []
+    }
+  ]
+}

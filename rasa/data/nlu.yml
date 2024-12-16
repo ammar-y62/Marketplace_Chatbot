@@ -1,0 +1,52 @@
+version: "3.1"
+
+nlu:
+- intent: greet
+  examples: |
+    - hey
+    - hello
+    - hi
+    - good morning
+    - good evening
+
+- intent: goodbye
+  examples: |
+    - bye
+    - goodbye
+    - see you later
+    - take care
+
+- intent: affirm
+  examples: |
+    - yes
+    - sure
+    - correct
+    - of course
+
+- intent: deny
+  examples: |
+    - no
+    - not really
+    - I don't think so
+    - nope
+
+- intent: inquire_stock
+  examples: |
+    - Is [L0001](listing_id) available?
+    - Do you have this listing [L0002](listing_id)?
+    - Can you check if [L0005](listing_id) is in stock?
+    - Is [L0007](listing_id) still available?
+
+- intent: inquire_pickup_address
+  examples: |
+    - Where is the pickup location?
+    - Can you tell me the address for pickup?
+    - What's the address to collect my order?
+    - Where should I come to pick it up?
+
+- intent: inquire_pickup_timing
+  examples: |
+    - What time can I pick up the order?
+    - When is pickup available?
+    - Can you give me the pickup schedule?
+    - What are your pickup hours?
